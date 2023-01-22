@@ -1,0 +1,1 @@
+{"processes":{"44b9e2c9-cb0e-4074-84d5-554bcf6f50a2":{"parent":null,"children":["72b427ed-e4b5-45b2-aa33-294e10a07a1c"]},"72b427ed-e4b5-45b2-aa33-294e10a07a1c":{"parent":"44b9e2c9-cb0e-4074-84d5-554bcf6f50a2","children":[]}},"files":{"/home/usuario/React-user-management/server/src/models/contribution.ts":["72b427ed-e4b5-45b2-aa33-294e10a07a1c"]},"externalIds":{}}
