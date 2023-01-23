@@ -25,10 +25,13 @@ describe('AuthJwt', () => {
   it('if token is provided, should return 200', async () => {
     const secret = 'test-secret';
     const token = jwt.sign({ id: 1 }, secret, { expiresIn: 86400 });
-    const req = { headers: { token: token } };
+    const req = { headers: { token: token }, userId: 0 };
     const result = { code: 0, message: '' };
     const res = { status: (code: number) => { return { send: (message: { message: string }) => { result.code = code; result.message = message.message; } } } };
-    const next = () => { result.code = 200; };
+    const next = () => { 
+      result.code = 200;
+      expect(req.userId).to.equal(1);
+    };
     authJwt.verifyToken(req, res, next);
     expect(result.code).to.equal(200);
   });
