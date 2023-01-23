@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNotesByTag = exports.getPublicNotesByTag = exports.unrateNote = exports.rateNote = exports.removeTag = exports.addTag = exports.deleteNote = exports.updateNote = exports.getNote = exports.createNote = exports.getNotes = exports.getUserNotes = exports.getPublicNote = exports.getPublicNotes = void 0;
-const config = require("../config/auth.config");
 const models_1 = require("../models");
 const Note = models_1.db.note;
-const User = models_1.db.user;
 const getPublicNotes = (req, res) => {
     Note.find({ isPublic: true })
         .exec((err, notes) => {

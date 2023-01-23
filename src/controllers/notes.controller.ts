@@ -1,7 +1,5 @@
-const config = require("../config/auth.config");
 import { db } from "../models";
 const Note = db.note;
-const User = db.user;
 
 export const getPublicNotes = (req: any, res: any) => {
   Note.find({ isPublic: true })
