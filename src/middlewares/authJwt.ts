@@ -7,25 +7,20 @@ if (secret == undefined) {
   console.log("!!! TESTING MODE !!!");
 }
 
-const verifyToken = (req: any, res: any, next: any) => {
+const verifyToken = async (req: any, res: any, next: any) => {
   let token = req.headers.token || req.session.token || null;
   if (!token || token === 'null') {
-    return res.status(403).send({ message: "No token provided!" });
+    res.status(403).send({ message: "No token provided!" });
+    return;
   } else {
     jwt.verify(token, secret, (err: any, decoded: any) => {
       if (err) {
-        return res.status(401).send({ message: "Unauthorized!" });
+        res.status(401).send({ message: "Unauthorized!" });
+        return;
       } else {
         req.userId = decoded.id;
         next();
       }
-    // jwt.verify(token, config.secret, (err: any, decoded: any) => {
-      // if (err) {
-      //   return res.status(401).send({ message: "Unauthorized!" });
-      // } else {
-      //   req.userId = decoded.id;
-      //   next();
-      // }
     });
   }
 };
