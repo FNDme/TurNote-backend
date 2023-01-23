@@ -4,13 +4,31 @@ import { authJwt } from '../../src/middlewares/authJwt';
 import jwt from 'jsonwebtoken';
 
 describe('AuthJwt', () => {
-  it('if no token is provided, should return 403', async () => {
+  it('if no token is provided, should return 403 (\'null\')', async () => {
     const req = { headers: { token: 'null' } };
     const result = { code: 0, message: '' };
     const res = { status: (code: number) => { return { send: (message: { message: string }) => { result.code = code; result.message = message.message; } } } };
     const next = () => {};
     authJwt.verifyToken(req, res, next);
     expect(result.code).to.equal(403);
+  });
+
+  it('if token is provided but wrong, should return 403 (undefined)', async () => {
+    const req = { headers: { }, session: { } };
+    const result = { code: 0, message: '' };
+    const res = { status: (code: number) => { return { send: (message: { message: string }) => { result.code = code; result.message = message.message; } } } };
+    const next = () => {};
+    authJwt.verifyToken(req, res, next);
+    expect(result.code).to.equal(401);
+  });
+
+  it('if token is provided but wrong, should return 401 (session)', async () => {
+    const req = { session: { token: 'test' } };
+    const result = { code: 0, message: '' };
+    const res = { status: (code: number) => { return { send: (message: { message: string }) => { result.code = code; result.message = message.message; } } } };
+    const next = () => {};
+    authJwt.verifyToken(req, res, next);
+    expect(result.code).to.equal(401);
   });
 
   it('if token is provided but wrong, should return 401', async () => {
