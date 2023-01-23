@@ -18,8 +18,9 @@ describe('AuthJwt', () => {
     const result = { code: 0, message: '' };
     const res = { status: (code: number) => { return { send: (message: { message: string }) => { result.code = code; result.message = message.message; } } } };
     const next = () => {};
-    authJwt.verifyToken(req, res, next);
-    expect(result.code).to.equal(401);
+    authJwt.verifyToken(req, res, next).then(() => {
+      expect(result.code).to.equal(401);
+    });
   });
 
   it('if token is provided but wrong, should return 401 (session)', async () => {
@@ -27,8 +28,9 @@ describe('AuthJwt', () => {
     const result = { code: 0, message: '' };
     const res = { status: (code: number) => { return { send: (message: { message: string }) => { result.code = code; result.message = message.message; } } } };
     const next = () => {};
-    authJwt.verifyToken(req, res, next);
-    expect(result.code).to.equal(401);
+    authJwt.verifyToken(req, res, next).then(() => {
+      expect(result.code).to.equal(401);
+    });
   });
 
   it('if token is provided but wrong, should return 401', async () => {
@@ -36,8 +38,9 @@ describe('AuthJwt', () => {
     const result = { code: 0, message: '' };
     const res = { status: (code: number) => { return { send: (message: { message: string }) => { result.code = code; result.message = message.message; } } } };
     const next = () => {};
-    authJwt.verifyToken(req, res, next);
-    expect(result.code).to.equal(401);
+    authJwt.verifyToken(req, res, next).then(() => {
+      expect(result.code).to.equal(401);
+    });
   });
 
   it('if token is provided, should return 200', async () => {
@@ -50,7 +53,8 @@ describe('AuthJwt', () => {
       result.code = 200;
       expect(req.userId).to.equal(1);
     };
-    authJwt.verifyToken(req, res, next);
-    expect(result.code).to.equal(200);
+    authJwt.verifyToken(req, res, next).then(() => {
+      expect(result.code).to.equal(200);
+    });
   });
 });
