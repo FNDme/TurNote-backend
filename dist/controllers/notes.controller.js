@@ -93,7 +93,6 @@ const getNote = (req, res) => {
 };
 exports.getNote = getNote;
 const updateNote = (req, res) => {
-    console.log('updateNote');
     const id = req.params.id;
     Note.findByIdAndUpdate(id, req.body, { useFindAndModify: false }, (err, note) => {
         if (err) {

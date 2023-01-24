@@ -11,12 +11,12 @@ export function userRoutes(app: any) {
   });
 
   app.get(
-    "/api/test/all",
+    "/api/board/all",
     controller.allAccess
   );
 
   app.get(
-    "/api/test/user",
+    "/api/board/user",
     middlewares.authJwt.verifyToken,
     controller.userBoard
   );

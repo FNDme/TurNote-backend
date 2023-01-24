@@ -15,22 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.authJwt = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config = require("../config/auth.config");
-let secret = config.secret;
-if (secret == undefined) {
-    secret = "test-secret";
-    console.log("!!! TESTING MODE !!!");
-}
 const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    let token = req.headers.token || req.session.token || null;
+    const token = req.headers.token || req.session.token || null;
     if (!token || token === 'null') {
         res.status(403).send({ message: "No token provided!" });
-        return;
     }
     else {
-        jsonwebtoken_1.default.verify(token, secret, (err, decoded) => {
+        jsonwebtoken_1.default.verify(token, config.secret, (err, decoded) => {
             if (err) {
                 res.status(401).send({ message: "Unauthorized!" });
-                return;
             }
             else {
                 req.userId = decoded.id;

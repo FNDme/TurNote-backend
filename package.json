@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node ./dist/server.js",
-    "test": "mocha",
+    "test": "mocha test/**/*.spec.ts",
+    "test:api": "mocha test_api/**/*.spec.ts",
     "coverage": "nyc npm test && nyc report --reporter=lcov"
   },
   "author": "",

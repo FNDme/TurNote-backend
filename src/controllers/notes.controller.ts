@@ -107,7 +107,6 @@ export const getNote = (req: any, res: any) => {
 }
 
 export const updateNote = (req: any, res: any) => {
-  console.log('updateNote');
   const id = req.params.id;
 
   Note.findByIdAndUpdate(id

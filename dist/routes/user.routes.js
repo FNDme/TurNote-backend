@@ -31,7 +31,7 @@ function userRoutes(app) {
         res.header("Access-Control-Allow-Headers", "X-Access-Token, Origin, Content-Type, Accept");
         next();
     });
-    app.get("/api/test/all", controller.allAccess);
-    app.get("/api/test/user", middlewares_1.middlewares.authJwt.verifyToken, controller.userBoard);
+    app.get("/api/board/all", controller.allAccess);
+    app.get("/api/board/user", middlewares_1.middlewares.authJwt.verifyToken, controller.userBoard);
 }
 exports.userRoutes = userRoutes;

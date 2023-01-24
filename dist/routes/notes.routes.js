@@ -43,25 +43,5 @@ function notesRoutes(app) {
     app.get("/api/notes/tags/:tag", middlewares_1.middlewares.authJwt.verifyToken, controller.getNotesByTag);
     app.post("/api/notes/:id/tag", middlewares_1.middlewares.authJwt.verifyToken, controller.addTag);
     app.delete("/api/notes/:id/tag", middlewares_1.middlewares.authJwt.verifyToken, controller.removeTag);
-    // app.post(
-    //   "/api/notes/:id/shareWith",
-    //   middlewares.authJwt.verifyToken,
-    //   controller.shareNoteWithUser
-    // )
-    // app.delete(
-    //   "/api/notes/:id/shareWith",
-    //   middlewares.authJwt.verifyToken,
-    //   controller.unshareNoteWithUser
-    // )
-    // app.post(
-    //   "/api/notes/:id/rate",
-    //   middlewares.authJwt.verifyToken,
-    //   controller.rateNote
-    // );
-    // app.delete(
-    //   "/api/notes/:id/rate",
-    //   middlewares.authJwt.verifyToken,
-    //   controller.unrateNote
-    // );
 }
 exports.notesRoutes = notesRoutes;
